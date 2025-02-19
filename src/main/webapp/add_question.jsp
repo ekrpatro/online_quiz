@@ -1,3 +1,4 @@
+
 <%@ page import="java.sql.*" %>
 <%
     String question = request.getParameter("question");
@@ -19,3 +20,4 @@
 
     out.println("Question added successfully!");
 %>
+
