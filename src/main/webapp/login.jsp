@@ -14,7 +14,8 @@
         session.setAttribute("user_id",rs.getInt(1));
         if(rs.getString(4).equals("ADMIN"))
         {
-        	response.sendRedirect("admin.jsp");
+        	//response.sendRedirect("admin.jsp");
+        	response.sendRedirect("score.jsp");
         }
         else
         { // NORMAL
