@@ -15,7 +15,8 @@
         if(rs.getString(4).equals("ADMIN"))
         {
         	//response.sendRedirect("admin.jsp");
-        	response.sendRedirect("score.jsp");
+        	//response.sendRedirect("score.jsp");
+        	response.sendRedirect("admin_menu.jsp");
         }
         else
         { // NORMAL

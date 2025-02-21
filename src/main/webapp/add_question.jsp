@@ -21,3 +21,7 @@
     out.println("Question added successfully!");
 %>
 
+<html>
+<head>
+</head>
+</html>
