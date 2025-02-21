@@ -18,14 +18,36 @@
         if (selectedOption != null && Integer.parseInt(selectedOption) == correctAnswer) 
         {
             score++;
+            
         }
         ps.setInt(1,user_id);
         ps.setInt(2,questionId);
         ps.setInt(3,Integer.parseInt(selectedOption));
         ps.executeUpdate();
        
-	}   
-	
+	}   	
     out.println("<h2>Your Score: " + score + "/"+total_question+ "</h2>");
+    String sq="SELECT `question_id`, question,`chosen_option`, correct_option,option1,option2,option3,option4 FROM `quiz_attempts` q1 inner join questions q2 on q1.question_id=q2.id WHERE user_id=?";
+    ps = con.prepareStatement(sq);
+    ps.setInt(1,user_id);
+    rs = ps.executeQuery();
+    String tbl="<table border =1><tr><td>Q.No</td><td>Question</td><td>Chosen option</td><td>Correct option</td></tr>";
+    String options[]= new String[4];
+    while (rs.next()) 
+    {
+    	String row="<tr><td>"+rs.getInt(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getInt(3)+"</td><td>"+rs.getInt(4)+"</td></tr>";
+    	options[0]=rs.getString(5);
+    	options[1]=rs.getString(6);
+    	options[2]=rs.getString(7);
+    	options[3]=rs.getString(8);
+    	if(rs.getInt(3)!= rs.getInt(4))
+    	{   row="<tr style='color:red'><td>"+rs.getInt(1)+"</td><td>"+rs.getString(2)+"</td><td>"+options[rs.getInt(3)-1]+"</td><td>"+options[rs.getInt(4)-1]+"</td></tr>";
+            
+    	}
+        tbl += row;       
+	} 
+    tbl = tbl + "</table>";
+    out.println(tbl);
+    
 %>
 
